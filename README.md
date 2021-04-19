@@ -1,2 +1,6 @@
 # 10bis
-Function sanity to 10bis site
+Final Project for INT College
+10bis
+
+By Ofir P.
+
