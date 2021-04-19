@@ -32,6 +32,19 @@ public class Main extends Base {
 			else
 				return false;
 		}
+		
+		// restaurant
+		public boolean restaurant() throws InterruptedException {
+			
+			
+			if ((driver.getCurrentUrl().contains("BSR"))) {
+				return true;
+			}
+			else
+				return false;
+		}
+		
+		
 
 	// select account
 	public boolean selectAccount() throws InterruptedException {

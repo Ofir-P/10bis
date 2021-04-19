@@ -9,6 +9,7 @@ import com.relevantcodes.extentreports.LogStatus;
 
 import pages.Login;
 import pages.Main;
+import pages.Restaurant;
 import utilites.GetDriver;
 import utilites.Utilities;
 
@@ -30,29 +31,28 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 
 
-public class Sign_InTest {
+public class RestaurantSearchTest {
 
 	// Global variables 
 	// Add extent reports
 	private ExtentReports extent;
 	private ExtentTest myTest;
-	private static String reportPath = System.getProperty("user.dir") + "\\test-output\\SignInTest.html";
+	private static String reportPath = System.getProperty("user.dir") + "\\test-output\\RestaurantSearchReport.html";
 
 	private WebDriver driver;
 
 	//pages
 	private Main main;
 	private Login login;
+	private Restaurant restaurant;
 	
-	private static final Logger logger = LogManager.getLogger(Sign_InTest.class);
+	private static final Logger logger = LogManager.getLogger(RestaurantSearchTest.class);
 	private static String userName;
 	private static String password;
 	private static String browser;
 	private static String baseUrl;
 	private static String FBName;
-	
-	
-
+	private static String rName;
 	
 
 	@BeforeClass
@@ -67,13 +67,14 @@ public class Sign_InTest {
 		userName = Utilities.getDataFromXML("info.xml", "userName", 0);
 		password = Utilities.getDataFromXML("info.xml", "password", 0);
 		FBName = Utilities.getDataFromXML("info.xml", "FBName", 0);
+		rName = Utilities.getDataFromXML("info.xml", "rName", 0);
 		
 		
 		driver = GetDriver.getDriver(browser, baseUrl, userName);
 		
 		main = new Main(driver);
 		login = new Login(driver);
-
+		restaurant = new Restaurant(driver);
 	}
 
 	
@@ -104,6 +105,22 @@ public class Sign_InTest {
 
 	}
 	
+	/*  Prerequisite: Logged in https://www.10bis.co.il/
+	 * 		Given: Client click on Search bar   
+	 * 		When: Typing restaurant name and pressing enter
+	 *  	Then: Getting into the restaurant page
+	 */
+	
+	@Test(priority = 2, enabled = true, description = "Searching for BSR Resturant")
+	public void SearchRestaurant() throws InterruptedException, IOException, ParserConfigurationException, SAXException {
+
+		logger.info("Typing Resturant name in search bar");
+		main.restaurant();
+		logger.info("Going to restaurant page");
+		Assert.assertTrue(restaurant.restaurantSearch(rName), "Could not match your Resturant name with the Resturant that you chose, Check your logs");
+		logger.info("Successfully Got into the resturant page you wanted!");
+
+	}
 	
 	
 	

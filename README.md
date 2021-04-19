@@ -1,2 +1,2 @@
 # 10bis
-Final Project for INT College
+Function sanity to 10bis site

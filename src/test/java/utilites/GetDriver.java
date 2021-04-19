@@ -75,7 +75,7 @@ public class GetDriver {
 						
 						ChromeOptions options = new ChromeOptions();
 						options.addArguments("--incognito");
-						options.addArguments("user-data-dir=C:/Users/"+user+"/AppData/Local/Google/Chrome/User Data");
+						//options.addArguments("user-data-dir=C:/Users/"+user+"/AppData/Local/Google/Chrome/User Data");
 						
 						
 						System.setProperty("webdriver.chrome.driver", "d:\\\\Software\\\\Eclipse\\\\Jars\\\\\\\\Chrome\\\\chromedriver.exe");
@@ -92,7 +92,7 @@ public class GetDriver {
 					driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 					
 					
-					//add maximu time waiting for page to load
+					//add maximum time waiting for page to load
 					driver.manage().timeouts().pageLoadTimeout(15, TimeUnit.SECONDS);
 					
 					// maximize window
