@@ -44,6 +44,16 @@ public class Main extends Base {
 				return false;
 		}
 		
+		// order page
+		public boolean order() throws InterruptedException {
+			
+			
+			if ((driver.getCurrentUrl().contains("BSR"))) {
+				return true;
+			}
+			else
+				return false;
+		}
 		
 
 	// select account

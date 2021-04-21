@@ -25,7 +25,7 @@ public class Restaurant extends Base {
 		
 		rName = getText(By.xpath("//*[@id=\"root\"]/div[2]/div[1]/section/header/div/div[2]/div[1]"));
 
-		if (rName.contains(rName))
+		if (rName.contains("BSR"))
 			return true;
 		else
 			return false;
