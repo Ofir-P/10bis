@@ -44,5 +44,7 @@
 	<classpathentry kind="lib" path="D:/Software/Eclipse/Jars/Selenium/log4j-1.2.17.jar"/>
 	<classpathentry kind="lib" path="D:/Software/Eclipse/Jars/Selenium/log4j-core-2.14.1.jar"/>
 	<classpathentry kind="lib" path="D:/Software/Eclipse/Eclipse/eclipse/plugins/testng-7.4.0.jar"/>
+	<classpathentry kind="lib" path="D:/Software/Eclipse/Jars/Selenium/ATUReporter_Selenium_testNG_5.1.1.jar"/>
+	<classpathentry kind="lib" path="D:/Software/Eclipse/Jars/Selenium/ATUTestRecorder_2.1.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

@@ -7,6 +7,8 @@ import com.relevantcodes.extentreports.ExtentReports;
 import com.relevantcodes.extentreports.ExtentTest;
 import com.relevantcodes.extentreports.LogStatus;
 
+import atu.testrecorder.ATUTestRecorder;
+import atu.testrecorder.exceptions.ATUTestRecorderException;
 import pages.Login;
 import pages.Main;
 import pages.Order;
@@ -19,6 +21,9 @@ import org.testng.annotations.BeforeMethod;
 import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Method;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.xml.parsers.ParserConfigurationException;
 
@@ -39,7 +44,8 @@ public class OrderPageTest {
 	private ExtentReports extent;
 	private ExtentTest myTest;
 	private static String reportPath = System.getProperty("user.dir") + "\\test-output\\OrderPageReport.html";
-
+	private static String videoPath = System.getProperty("user.dir") + "\\test-output\\videos";
+	ATUTestRecorder recorder;
 	private WebDriver driver;
 
 	//pages
@@ -84,9 +90,13 @@ public class OrderPageTest {
 	
 	
 	@BeforeMethod
-	public void beforeMethod(Method method) throws IOException {
+	public void beforeMethod(Method method) throws IOException, ATUTestRecorderException {
 		myTest = extent.startTest(method.getName());
 		myTest.log(LogStatus.INFO, "Starting test", "Start test");
+		DateFormat dateFormat = new SimpleDateFormat("yy-MM-dd HH-mm-ss");
+		Date date = new Date();
+		recorder = new ATUTestRecorder(videoPath, "Test " + this.getClass().getSimpleName() + " "+ dateFormat.format(date),false);
+		recorder.start();
 	}
 	
 
@@ -145,7 +155,7 @@ public class OrderPageTest {
 	
 	
 	@AfterMethod
-	public void afterMethod(ITestResult result) throws IOException {
+	public void afterMethod(ITestResult result) throws IOException, ATUTestRecorderException {
 
 		if (result.getStatus() == ITestResult.FAILURE) {
 			myTest.log(LogStatus.FAIL, "Test failed: " + result.getName());
@@ -160,7 +170,7 @@ public class OrderPageTest {
 
 		myTest.log(LogStatus.INFO, "Finish test", "Finish test ");
 		extent.endTest(myTest);
-	
+		recorder.stop();
 		//return to base URL 
 		//driver.get(baseUrl);
 	}
