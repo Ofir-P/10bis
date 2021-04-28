@@ -1,5 +1,7 @@
 package pages;
 
+import java.util.Set;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
@@ -28,6 +30,25 @@ public class Main extends Base {
 			click(By.xpath("//button[text()='התחברות']"));
 			
 			if (isExist(By.xpath("//*[@id=\"modal-title\"][text()='איזה כיף שחזרת אלינו!']")))
+				return true;
+			else
+				return false;
+		}
+		
+		// career page
+		public boolean careerPage() throws InterruptedException {
+			String baseHandle = driver.getWindowHandle();
+			//Click Career Page
+			click(By.linkText("דרושים"));
+			Set<String> handels = driver.getWindowHandles();
+
+			for (String h : handels) {
+				if (!h.equals(baseHandle))
+					driver.switchTo().window(h);
+			}
+			Thread.sleep(1500);
+			
+			if (isExist(By.xpath("//*[@id=\"acc-skip-content\"]/div[2]/section[9]/div/div/div/div/div/div/div/div/div/div/ppc-container/span/ppc-content/div/h1")))
 				return true;
 			else
 				return false;
